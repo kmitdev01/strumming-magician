@@ -19,8 +19,8 @@ let BarStartFrom = 0
 let BarHTMLContentArr = ""
 let PreviewAudioPlay = false
 auto();
-var API = "http://localhost:3000"
-// var API = "https://strummingmagician.com"
+// var API = "http://localhost:3000"
+var API = "https://strummingmagician.com"
 
 function auto() {
     let logo = document.getElementById("loading-image");
