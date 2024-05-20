@@ -308,7 +308,26 @@ PlayPauseVideoBtn.addEventListener('click', () => {
     }
 })
 
+function smoothScroll() {
+    DisplayPatternData.style.scrollBehavior = "revert";
+    setTimeout(() => {
+        DisplayPatternData.style.scrollBehavior = "smooth";
+    }, 500)
+}
+
 RestartVideoBtn.addEventListener('click', () => {
+    let DisplayPatternData = document.getElementById("DisplayPatternData")
+    function isScrollAtStart() {
+        return DisplayPatternData.scrollLeft === 0;
+    }
+    // Add scroll event listener
+    DisplayPatternData.addEventListener('scroll', function() {
+        if (isScrollAtStart()) {
+            BarcountClass = 1
+        }
+    });
+    smoothScroll();
+    countArrOfPattern = 0
     RestartVideo()
     play = false
     PlayPauseVideoBtn.innerHTML = "Pause"
@@ -491,7 +510,7 @@ function SetUpAudio(number, audioDuration) {
     }
 
     if (number == 0) {
-
+        smoothScroll();
         document.getElementsByClassName("bars")[0].scrollIntoViewIfNeeded()
         bar = document.getElementsByClassName("bars")[0]
         bar.classList.toggle("HightLightBars")
