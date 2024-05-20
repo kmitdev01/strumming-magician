@@ -174,17 +174,17 @@
         <!-- Copy & paste btns -->
         <div class="container">
             <div class="mt-2 CopyPasteBtn">
-                <span>
+                <!-- <span>
                     Select Pattern Range from <input type="number" class="miniBox" id="TickRangeFrom"> to <input
                         type="number" class="miniBox" id="TickRangeTo">
                     <button type="button" class="btn btn-outline-dark " onclick="TickPatterns()">Tick Patterns</button>
                     <button type="button" class="btn btn-outline-dark " onclick="UnselectAllPatterns()">Unselect
                         All</button>
-                </span>
+                </span> -->
                 <button type="button" class="btn btn-outline-dark" onclick="DeleteMultiplePattern()">Delete</button>
                 <button type="button" class="btn btn-outline-dark" onclick="CopyMultiplePattern()">Copy</button>
-                <button type="button" class="btn btn-outline-dark" onclick="RunSpecificPattern()">Play Selected Patterns
-                    Only</button>
+                <!-- <button type="button" class="btn btn-outline-dark" onclick="RunSpecificPattern()">Play Selected Patterns
+                    Only</button> -->
                 <button type="button" class="btn btn-outline-dark" onclick="CancelSelect()">Cancel</button>
             </div>
             <div class="mt-2 txt-bold CopyPasteBtn">
@@ -242,7 +242,7 @@
 
             
 
-            <div class="container mt-3" style="text-align: right;">
+            <!-- <div class="container mt-3" style="text-align: right;">
                 <input type="radio" class="btn-check" name="VideoType" value="handmade" id="Handmade" autocomplete="off"
                     checked onclick="SetVideoType()" onchange="SetVideoType()">
                 <label class="btn btn-outline-success" for="Handmade">Realistic</label>
@@ -251,7 +251,7 @@
                     onclick="SetVideoType()" onchange="SetVideoType()">
                 <label class="btn btn-outline-success" for="Animated">Animated</label>
 
-            </div>
+            </div> -->
             <div class="container mt-3" style="text-align: center;" id="GenerateVideoContainer">
                 <button type="button" class="btn btn-outline-dark" id="GenerateVideo" onclick="FetchFiles()">Generate Video</button>
                 <button type="button" class="btn btn-outline-dark" id="PreviewAudioOnlyID" onclick="PreviewAudioOnly()">Preview Audio</button>
@@ -383,8 +383,6 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-
 </body>
 
 </html>

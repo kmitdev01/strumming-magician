@@ -19,8 +19,8 @@ let BarStartFrom = 0
 let BarHTMLContentArr = ""
 let PreviewAudioPlay = false
 auto();
-// var API = "http://localhost:3000"
-var API = "https://strummingmagician.com"
+
+var API = ""
 
 function auto() {
     let logo = document.getElementById("loading-image");
@@ -331,7 +331,13 @@ function GetMainValueByTimeSign() {
 
     CreatePatternBoxes()
     CancelTimeSign()
-    DisplayStrummingPattern()
+
+    if(isAdvancedMode){
+        AdvancedMode()
+    }else{
+        DisplayStrummingPattern()
+    }
+
     if (CheckMetroOn) {
         document.querySelector('#RestartVideo').click()
     }
@@ -766,7 +772,7 @@ function DisplayStrummingPattern() {
 
     // DisplayPatternData.innerHTML = content
     // DisplayPatternData.innerHTML = CreateDisplayPattern(StrummingPatternArr, "default")
-    console.log(BarHTMLContentArr.length);
+    // console.log(BarHTMLContentArr[0]);
     BarStartFrom = roundToNextTen(BarHTMLContentArr.length) -10;
     ShowPagintion()
     ShowPagintionBtns()
@@ -1014,7 +1020,7 @@ function loop1(StrummingPatternArr, def, EveryBoxNumber, SinglePatternLength) {
 
             if (StrummingPatternArr[IncrementPatternsNumber - 1][0] == "E") {
                 IntensityHtml += `<div class="strumming-pattern-Display-Intensity IntensityDiv">
-                    <select class="strumming-pattern-select-Display IntensityStore SelectIntensityCheckBox" style="display:none" id="Intensity-${IncrementPatternsNumber}" >
+                    <select class="strumming-pattern-select-Display IntensityStore SelectIntensityCheckBox" intensityattr="${IncrementPatternsNumber}" style="display:none" id="Intensity-${IncrementPatternsNumber}" >
                         <option value="NoIntensity">NoIntensity</option>
                     </select>
 
@@ -1032,7 +1038,7 @@ function loop1(StrummingPatternArr, def, EveryBoxNumber, SinglePatternLength) {
             </select>
 
             <label for="IntensityBox${j}" class="SelectIntensity" style="display:none;">
-            <input type="checkbox" id="IntensityBox${j}" class="SelectIntensityCheckBox">
+            <input type="checkbox" id="IntensityBox${j}" class="SelectIntensityCheckBox" intensityattr="${IncrementPatternsNumber}">
         </label>
             </div>`
                 } else {
@@ -1055,7 +1061,7 @@ function loop1(StrummingPatternArr, def, EveryBoxNumber, SinglePatternLength) {
             </select>
 
             <label for="IntensityBox${j}" class="SelectIntensity" style="display:none;">
-            <input type="checkbox" id="IntensityBox${j}" class="SelectIntensityCheckBox">
+            <input type="checkbox" id="IntensityBox${j}" class="SelectIntensityCheckBox" intensityattr="${IncrementPatternsNumber}">
         </label>
             </div>`
                 }
@@ -1981,7 +1987,9 @@ function DeleteMultiplePattern() {
     let SelectedValueArr = []
     for (let i = 0; i < SelectBarsCheckBox.length; i++) {
         if (SelectBarsCheckBox[i].checked) {
-            SelectedValueArr.push(i)
+            let id = SelectBarsCheckBox[i].id.slice(9);
+            id = id-1
+            SelectedValueArr.push(id)
         }
 
     }
@@ -2269,9 +2277,11 @@ function SelectIntensities() {
 
 function ChangeMultipleIntensityValue() {
     let SelectBarsCheckBox = document.querySelectorAll(".SelectIntensityCheckBox");
+
     let SelectedValueArr = []
     for (let i = 0; i < SelectBarsCheckBox.length; i++) {
         if (SelectBarsCheckBox[i].checked) {
+            // let id = SelectBarsCheckBox[i].getAttribute("intensityattr")
             SelectedValueArr.push(i)
         }
 
@@ -2285,10 +2295,9 @@ function ChangeMultipleIntensityValue() {
     let selectedValue = document.getElementsByClassName("ChanheIntensitySelect")[0].value
 
     SelectedValueArr.map(function (val, index) {
-        // console.log(document.getElementById(`Intensity-${val+1}`));
-        document.getElementById(`Intensity-${val+1}`).value = selectedValue
+        document.getElementById(`Intensity-${val}`).value = selectedValue
 
-        let ele = document.getElementById(`Intensity-${val+1}`)
+        let ele = document.getElementById(`Intensity-${val}`)
         InstensitySetOnStorage(ele)
     })
 
@@ -2304,7 +2313,11 @@ function CopyMultiplePattern() {
     let SelectedValueArr = []
     for (let i = 0; i < SelectBarsCheckBox.length; i++) {
         if (SelectBarsCheckBox[i].checked) {
-            SelectedValueArr.push(i)
+            // SelectedValueArr.push(i)
+
+            let id = SelectBarsCheckBox[i].id.slice(9);
+            id = id-1
+            SelectedValueArr.push(id)
         }
 
     }
@@ -5095,6 +5108,12 @@ function SyncSongFromDatabase(){
     localStorage.clear()
     if(AppChrodsData){
         localStorage.setItem("AppChrodsData", AppChrodsData);
+    }
+
+    if(CurrentSongData.AdvancedMode=="true"){
+        isAdvancedMode = true
+    }else{
+        isAdvancedMode = false
     }
     
     localStorage.setItem("AdvancedMode", CurrentSongData.AdvancedMode)

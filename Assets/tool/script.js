@@ -812,6 +812,26 @@ function playClickMetronome() {
 
 function PreviewAudioMetronomeOnly() {
 
+    if (sound === null) {
+        let DisplayPatternData = document.getElementById("DisplayPatternData")
+        function isScrollAtStart() {
+            return DisplayPatternData.scrollLeft === 0;
+        }
+        // Add scroll event listener
+        DisplayPatternData.addEventListener('scroll', function() {
+            if (isScrollAtStart()) {
+                BarcountClass = 1
+            }
+        });
+        smoothScroll();
+        countArrOfPattern = 0;
+        Barcount = 0
+        bar.classList.remove("HightLightBars");
+        bar.classList.remove("animatedBars");
+        UpperPattern.classList.remove("ProgressInBars")
+        UpperPattern.classList.remove("animatedPatternDisplay")
+        return;
+    }
 
     try {
 
