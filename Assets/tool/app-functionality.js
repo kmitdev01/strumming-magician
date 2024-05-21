@@ -773,7 +773,7 @@ function DisplayStrummingPattern() {
     // DisplayPatternData.innerHTML = content
     // DisplayPatternData.innerHTML = CreateDisplayPattern(StrummingPatternArr, "default")
     // console.log(BarHTMLContentArr[0]);
-    BarStartFrom = roundToNextTen(BarHTMLContentArr.length) -10;
+    // BarStartFrom = roundToNextTen(BarHTMLContentArr.length) -10;
     ShowPagintion()
     ShowPagintionBtns()
     AutoShowPattern(StrummingPatternArr)

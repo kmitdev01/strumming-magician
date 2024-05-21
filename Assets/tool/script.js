@@ -50,7 +50,7 @@ function ShowPagintion(){
     var style = document.createElement('style');
     
     // Add CSS rule to hide scrollbar thumb
-    style.innerHTML = "#DisplayPatternData::-webkit-scrollbar { width: 0px; }";
+    // style.innerHTML = "#DisplayPatternData::-webkit-scrollbar { width: 0px; }";
     
     // Append the style element to the document head
     document.head.appendChild(style);
@@ -354,6 +354,7 @@ InstantPlaySection.addEventListener("click", () => {
 
     BarcountClass = InstantStartFrom[1]
     Barcount = InstantStartFrom[0] + 1
+    countArrOfPattern = InstantStartFrom[0]
     if (BarcountClass == 0) {
         BarcountClass = 1
         Barcount = 0
