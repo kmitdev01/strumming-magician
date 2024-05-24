@@ -27,6 +27,7 @@ let RunMetronomeAfterTimes = 2;
 let BarcountClass = 1;
 let Barcount = 0;
 let bar;
+let barLine;
 let UpperPattern
 let StoreSound, StoreVideoCache;
 
@@ -277,6 +278,7 @@ function RestartVideo() {
     try {
         bar.classList.toggle("HightLightBars")
         bar.classList.toggle("animatedBars")
+        barLine.classList.toggle("highlightedLine")
         UpperPattern.classList.toggle("ProgressInBars")
         UpperPattern.classList.toggle("animatedPatternDisplay")
     } catch (error) {
@@ -285,6 +287,7 @@ function RestartVideo() {
 
 
     bar = "";
+    barLine = "";
     UpperPattern = ""
 
     PauseVideo()
@@ -366,11 +369,13 @@ InstantPlaySection.addEventListener("click", () => {
     try {
         bar.classList.remove("HightLightBars");
         bar.classList.remove("animatedBars");
+        barLine.classList.remove("highlightedLine");
         UpperPattern.classList.remove("ProgressInBars")
         UpperPattern.classList.remove("animatedPatternDisplay")
     } catch (error) {
     }
     bar = "";
+    barLine = "";
     UpperPattern = ""
     StartVideo()
 })
@@ -482,6 +487,7 @@ function SetUpAudio(number, audioDuration) {
         BeatIncreaseNumber = 0
         bar.classList.toggle("HightLightBars")
         bar.classList.toggle("animatedBars")
+        barLine.classList.toggle("highlightedLine")
         UpperPattern.classList.toggle("ProgressInBars")
         UpperPattern.classList.toggle("animatedPatternDisplay")
         BarcountClass = 1;
@@ -500,12 +506,15 @@ function SetUpAudio(number, audioDuration) {
 
             bar.classList.toggle("HightLightBars")
             bar.classList.toggle("animatedBars")
+            barLine.classList.toggle("highlightedLine")
         } catch (error) {
 
         }
         bar = document.getElementsByClassName("bars")[BarcountClass]
+        barLine = document.getElementsByClassName("line")[BarcountClass]
         bar.classList.toggle("HightLightBars")
         bar.classList.toggle("animatedBars")
+        barLine.classList.toggle("highlightedLine")
         BarcountClass++
         Barcount = 1
     }
@@ -514,8 +523,10 @@ function SetUpAudio(number, audioDuration) {
         smoothScroll();
         document.getElementsByClassName("bars")[0].scrollIntoViewIfNeeded()
         bar = document.getElementsByClassName("bars")[0]
+        barLine = document.getElementsByClassName("line")[0]
         bar.classList.toggle("HightLightBars")
         bar.classList.toggle("animatedBars")
+        barLine.classList.toggle("highlightedLine")
 
         UpperPattern = document.querySelectorAll(".Upper-Pattern")[0]
         UpperPattern.classList.toggle("ProgressInBars")
