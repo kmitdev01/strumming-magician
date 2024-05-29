@@ -17,7 +17,7 @@ let IsSplit = false
 let RandomRightHandVideo = ""
 
 auto();
-var API = "http://localhost:3000"
+var API = "http://192.168.1.50:3000"
 // var API = "https://strummingmagician.com"
 
 function auto() {
