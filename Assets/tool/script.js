@@ -329,7 +329,7 @@ RestartVideoBtn.addEventListener('click', () => {
             BarcountClass = 1
         }
     });
-    smoothScroll();
+    // smoothScroll();
     countArrOfPattern = 0
     RestartVideo()
     play = false
@@ -501,7 +501,7 @@ function SetUpAudio(number, audioDuration) {
 
         Barcount++;
     } else {
-        document.getElementsByClassName("bars")[BarcountClass].scrollIntoViewIfNeeded()
+        // document.getElementsByClassName("bars")[BarcountClass].scrollIntoViewIfNeeded()
         try {
 
             bar.classList.toggle("HightLightBars")
@@ -512,6 +512,15 @@ function SetUpAudio(number, audioDuration) {
         }
         bar = document.getElementsByClassName("bars")[BarcountClass]
         barLine = document.getElementsByClassName("line")[BarcountClass]
+
+        const scroller = document.getElementById('DisplayPatternData');
+        const scrollerWidth = scroller.clientWidth;
+        const itemWidth = bar.clientWidth;
+        const itemOffset = bar.offsetLeft;
+        const scrollPosition = itemOffset - (scrollerWidth / 2) + (itemWidth / 2);
+        console.log('scrollPosition ---> ', {scrollPosition, scroller, itemWidth, itemOffset})
+        scroller.scrollTo({ left: scrollPosition, behavior: 'smooth'});
+        
         bar.classList.toggle("HightLightBars")
         bar.classList.toggle("animatedBars")
         barLine.classList.toggle("highlightedLine")
@@ -520,10 +529,17 @@ function SetUpAudio(number, audioDuration) {
     }
 
     if (number == 0) {
-        smoothScroll();
-        document.getElementsByClassName("bars")[0].scrollIntoViewIfNeeded()
+        // smoothScroll();
         bar = document.getElementsByClassName("bars")[0]
         barLine = document.getElementsByClassName("line")[0]
+        const scroller = document.getElementById('DisplayPatternData');
+        const scrollerWidth = scroller.clientWidth;
+        const itemWidth = bar.clientWidth;
+        const itemOffset = bar.offsetLeft;
+        const scrollPosition = itemOffset - (scrollerWidth / 2) + (itemWidth / 2);
+        console.log('scrollPosition ---> ', {scrollPosition, scroller, itemWidth, itemOffset})
+        scroller.scrollTo({ left: scrollPosition, behavior: 'smooth'});
+
         bar.classList.toggle("HightLightBars")
         bar.classList.toggle("animatedBars")
         barLine.classList.toggle("highlightedLine")
@@ -835,7 +851,7 @@ function PreviewAudioMetronomeOnly() {
                 BarcountClass = 1
             }
         });
-        smoothScroll();
+        // smoothScroll();
         countArrOfPattern = 0;
         Barcount = 0
         bar.classList.remove("HightLightBars");
