@@ -1,99 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0 !important;
+        box-sizing: border-box;
+      }
+      .profile-card {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .page-title {
+        font-size: 35px;
+        line-height: normal;
+        font-weight: 700;
+        text-align: center;
+      }
 
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        min-height: 60vh;
+        width: 100%;
+        max-width: 1280px;
+      }
+      .form-container {
+        width: 100%;
+        margin: 30px auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
 
-        select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            width: 200px;
-            margin-right: 10px;
-        }
+      .top-container {
+        min-height: 280px;
+        border-bottom: 1px solid #dbdbdb;
+        margin-bottom: 20px;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+      }
 
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 200px;
+        margin-right: 10px;
+      }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+      .general-info,
+      .account-info {
+        width: 48%;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 12px;
+        border: 1px solid #dbdbdb;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+      }
+      .fields {
+        display: flex;
+        width: 100%;
+      }
+      .fields input,
+      .fields button,
+      .fields select {
+        /* height: 30px; */
+        /* padding: 12px; */
+        /* border: 1px solid #ddd; */
+        /* border-radius: 6px; */
+        /* font-size: 16px; */
+        /* color: #ddd; */
+        margin-top: 20px;
+        /* width: 100%; */
+      }
+      .fields input {
+        height: 30px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        /* color: #ddd; */
+        margin-top: 20px;
+        width: 100%;
+      }
+      .fields input:disabled {
+        /* height: 30px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px; */
+        color: #ababab;
+        /* margin-top: 20px;
+        width: 100%; */
+      }
+      .absoluted-title {
+        position: absolute;
+        top: -15px;
+        background-color: #fff;
+        padding: 5px;
+        text-transform: uppercase;
+        font-size: 18px;
+        color: #454545;
+        margin: 0;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
-    <div class="container">
-        <div class="container">
-
-            Your Current Plan is <%- UserType %>
+  <body>
+    <div class="profile-card">
+      <div class="container">
+        <h1 class="page-title">Profile</h1>
+        <div class="form-container top-container">
+          <div class="general-info">
+            <h5 class="absoluted-title">General Information</h5>
+            <div class="fields">
+              <input
+                type="text"
+                placeholder="Name"
+                value="<%- User.name %>"
+                disabled
+              />
+            </div>
+            <div class="fields">
+              <input
+                type="email"
+                placeholder="Email"
+                value="<%- User.email %>"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="general-info">
+            <h5 class="absoluted-title">Password</h5>
+            <div class="fields">
+              <input
+                type="password"
+                placeholder="Password"
+                value="<%- User.password %>"
+                disabled
+              />
+            </div>
+            <!-- <div class="fields">
+              <input
+                type="password"
+                placeholder="Password"
+                value="<%- User.password %>"
+              />
+            </div> -->
+            <div class="fields">
+              <button onclick="ChangeUserType()">Edit Password</button>
+            </div>
+          </div>
         </div>
+        <div class="form-container">
+          <div class="account-info">
+            <h5 class="absoluted-title">Payment Information</h5>
+            <!-- <div class="">Your Current Plan is <%- User.userType %></div> -->
 
-        <select id="mySelect">
-            <option value="freemium">Freemium</option>
-            <option value="premium">Premium</option>
-        </select>
+            <div class="fields">
+              <select id="mySelect">
+                <option value="freemium">Freemium</option>
+                <option value="premium">Premium</option>
+              </select>
 
-        <button onclick="ChangeUserType()">Change</button>
-    </div>
+              <button onclick="ChangeUserType()">Change</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <script>
+      <script>
         async function ChangeUserType() {
+          let userType = document.getElementById("mySelect").value;
 
-            var userType = document.getElementById("mySelect").value;
+          let Data = await fetch(`/change-user-type`, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userType,
+            }),
+          });
 
-            let Data = await fetch(`/change-user-type`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userType
-                })
-            })
-
-            Data = await Data.text();
-            if (Data == "Updated") {
-                window.location.reload()
-            } else {
-                alert(Data)
-            }
-
-
-
+          Data = await Data.text();
+          if (Data == "Updated") {
+            window.location.reload();
+          } else {
+            alert(Data);
+          }
         }
-    </script>
+        async function ChangeUserPass() {
+          let userOldPass = "oldPass";
+          let userNewPass = "newPass";
 
-</body>
+          let Data = await fetch(`/change-user-password`, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userOldPass,
+              userNewPass,
+            }),
+          });
 
+          Data = await Data.text();
+          if (Data == "Updated") {
+            window.location.reload();
+          } else {
+            alert(Data);
+          }
+        }
+      </script>
+    </div>
+  </body>
 </html>

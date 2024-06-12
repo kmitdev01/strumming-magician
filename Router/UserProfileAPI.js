@@ -28,5 +28,26 @@ router.post("/change-user-type", verifyToken, verifiedUserEmail, async (req, res
 
 
 })
+router.post("/change-user-password", verifyToken, verifiedUserEmail, async (req, res) => {
+
+    try {
+
+        // let userType = req.body.userType;
+        // const UID = req.cookies.UID;
+        // let User = await UserAccount.findOne({ _id: UID })
+        // User.userType = userType
+        // await User.save()
+
+        // password update logic here
+
+        res.send("Updated")
+
+    } catch (error) {
+        console.log(error);
+        res.send("Error")
+    }
+
+
+})
 
 module.exports = router;

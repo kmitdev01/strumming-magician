@@ -63,13 +63,14 @@ router.get("/profile", verifyToken, verifiedUserEmail, async (req, res) => {
         const UID = req.cookies.UID;
 
         let User = await UserAccount.findOne({ _id: UID })
-        let UserType = User.userType;
 
-        if(UserType=="" || !UserType){
-            UserType = "freemium"
-        }
+        if (User?.userType == "" || !User?.userType) {
 
-        res.render("UserProfile", {UserType})
+            User.userType = "freemium";
+            await User.save();
+          }
+
+        res.render("UserProfile", { User })
 
     } catch (error) {
         console.log(error);
