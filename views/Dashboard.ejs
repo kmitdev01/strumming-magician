@@ -1,133 +1,191 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Strumming Magician | Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <style>
-        .box {
-            border: 2px solid #303134;
-            padding: 35px 5px 35px 5px;
-            margin: 5px;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 22px;
-            background-color: #303134;
-            color: white;
-            cursor: pointer;
+      .box {
+        border: 2px solid #303134;
+        padding: 35px 5px 35px 5px;
+        margin: 5px;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 22px;
+        background-color: #303134;
+        color: white;
+        cursor: pointer;
+      }
+      .profile-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-transform: uppercase;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        border: 1px solid rgba(46, 139, 238, 0.66);
+        background-color: rgba(46, 139, 238, 0.66);
+        text-decoration: unset;
+        margin-left: 20px;
+        cursor: pointer;
+      }
+      button {
+        padding: 8px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+      .navbar-nav {
+        display: none;
+      }
+      @media (max-width: 992px) {
+        .navbar-option {
+          display: none !important;
         }
+        .navbar-nav {
+          display: block;
+        }
+        .nav-link {
+          transition: 0.2s linear;
+          display: inline !important;
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .nav-item {
+          margin-bottom: 12px;
+        }
+        .nav-link:hover {
+          color: #007bff !important;
+          text-decoration: underline;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Strumming Magician</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                    <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li> -->
-
-                </ul>
-
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Strumming Magician</a>
+        <div
+          class="
+            d-flex
+            align-items-center
+            justify-content-end
+            w-100
+            navbar-option
+          "
+        >
+          <button onclick="window.location.href = '/profile'">
+            Upgrade Profile
+          </button>
+          <a class="profile-icon" href="/profile">AB</a>
         </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-3">
+            <li class="nav-item">
+              <a class="nav-link active" href="/profile">Upgrade to Premium</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/profile">Profile</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
-
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="box" onclick="AddNewSong()">
-                    Add New Song
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="box" onclick="window.location.href = '/my-songs'">
-                    My Songs
-                </div>
-
-            </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="box" onclick="AddNewSong()">New Song</div>
         </div>
-
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="box">
-                    My Downloads
-                </div>
-
-            </div>
-            <div class="col-sm-6">
-                <div class="box" onclick="window.location.href = '/profile'">
-                    Profile
-                </div>
-
-            </div>
+        <div class="col-sm-6">
+          <div class="box" onclick="window.location.href = '/my-songs'">
+            My Songs
+          </div>
         </div>
+      </div>
 
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="box">Demo Songs</div>
+        </div>
+        <div class="col-sm-6">
+          <!-- <div class="box" onclick="window.location.href = '/profile'">
+            Profile
+          </div> -->
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        async function AddNewSong() {
-            const { value: SongName } = await Swal.fire({
-                input: "text",
-                inputLabel: "New Song Name",
-                inputPlaceholder: "Type your New Song Name",
-                inputAttributes: {
-                    "aria-label": "Type your New Song Name"
-                },
-                showCancelButton: true
-            });
+      async function AddNewSong() {
+        const { value: SongName } = await Swal.fire({
+          input: "text",
+          inputLabel: "New Song Name",
+          inputPlaceholder: "Type your New Song Name",
+          inputAttributes: {
+            "aria-label": "Type your New Song Name",
+          },
+          showCancelButton: true,
+        });
 
-            if(!SongName){
-                return
-            }
-            
-
-            let Data = await fetch(`/new-song-data`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    SongName
-                })
-            })
-
-            Data = await Data.json();
-            if (Data.message == "Song Created Successfully") {
-                window.location = `/edit-song/${SongName}`
-            }else{
-                alert(Data.message)
-            }
-
-
-
-
+        if (!SongName) {
+          return;
         }
+
+        let Data = await fetch(`/new-song-data`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            SongName,
+          }),
+        });
+
+        Data = await Data.json();
+        if (Data.message == "Song Created Successfully") {
+          window.location = `/edit-song/${SongName}`;
+        } else {
+          alert(Data.message);
+        }
+      }
     </script>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

@@ -46,12 +46,11 @@
         flex-wrap: wrap;
       }
 
-      .top-container {
+      /* .top-container {
         min-height: 280px;
         border-bottom: 1px solid #dbdbdb;
         margin-bottom: 20px;
-        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-      }
+      } */
 
       select {
         padding: 10px;
@@ -139,14 +138,15 @@
   <body>
     <div class="profile-card">
       <div class="container">
-        <h1 class="page-title">Profile</h1>
+        <h1 class="page-title">My Account</h1>
         <div class="form-container top-container">
           <div class="general-info">
             <h5 class="absoluted-title">General Information</h5>
             <div class="fields">
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="Enter Name"
+                id="username"
                 value="<%- User.name %>"
                 disabled
               />
@@ -159,34 +159,21 @@
                 disabled
               />
             </div>
-          </div>
-          <div class="general-info">
-            <h5 class="absoluted-title">Password</h5>
             <div class="fields">
               <input
                 type="password"
-                placeholder="Password"
-                value="<%- User.password %>"
+                placeholder="Enter New Password"
+                id="password"
+                value="**************"
                 disabled
               />
             </div>
-            <!-- <div class="fields">
-              <input
-                type="password"
-                placeholder="Password"
-                value="<%- User.password %>"
-              />
-            </div> -->
             <div class="fields">
-              <button onclick="ChangeUserType()">Edit Password</button>
+              <button id="form-toggler" onclick="ChangeUserData()">Edit</button>
             </div>
           </div>
-        </div>
-        <div class="form-container">
-          <div class="account-info">
+          <div class="general-info">
             <h5 class="absoluted-title">Payment Information</h5>
-            <!-- <div class="">Your Current Plan is <%- User.userType %></div> -->
-
             <div class="fields">
               <select id="mySelect">
                 <option value="freemium">Freemium</option>
@@ -221,19 +208,59 @@
             alert(Data);
           }
         }
-        async function ChangeUserPass() {
-          let userOldPass = "oldPass";
-          let userNewPass = "newPass";
+        async function ChangeUserData() {
+          //   let userOldPass = "oldPass";
+          //   let userNewPass = "newPass";
 
-          let Data = await fetch(`/change-user-password`, {
+          const formButton = document.getElementById("form-toggler");
+          const username = document.getElementById("username");
+          const password = document.getElementById("password");
+
+          if (formButton.innerText === "Edit") {
+            formButton.innerText = "Save";
+            password.value = "";
+            username.toggleAttribute("disabled");
+            password.toggleAttribute("disabled");
+          } else {
+            const submittedSuccessfuly = await handleDataSubmit();
+            if (submittedSuccessfuly) {
+              username.toggleAttribute("disabled");
+              password.toggleAttribute("disabled");
+              formButton.innerText = "Edit";
+              password.value = "**************";
+            }
+          }
+        }
+
+        async function handleDataSubmit() {
+          const username = document.getElementById("username");
+          const password = document.getElementById("password");
+          if (!password.value.length) {
+            //   run submit here
+            await runSubmission(username.value);
+            return true;
+          }
+          const confirmation = confirm("confirm Password Update");
+          if (confirmation) {
+            //   run submit here
+            await runSubmission(username.value, password.value);
+            return true;
+          } else {
+            password.value = "";
+            return false;
+          }
+        }
+
+        async function runSubmission(newUserName = "", newPassword = "") {
+          let Data = await fetch(`/change-user-data`, {
             method: "POST",
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              userOldPass,
-              userNewPass,
+              username: newUserName,
+              password: newPassword,
             }),
           });
 
